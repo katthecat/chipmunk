@@ -1,0 +1,89 @@
+// Hyperbolic Hash Function -- Version 0.1
+// App ID - WOLFRAM - APPID: 99E69U
+
+// START needed functions
+let charDictionary = [["a",1],["b",2],["c",3],["d",4],["e",5],["f",6],["g",7],["h",8],["i",9],["j",10],["k",11],["l",12],["m",13],["n",14],["o",15],["p",16],["q",17],["r",18],["s",19],["t",20],["u",21],["v",22],["w",23],["x",24],["y",25],["z",26]];
+function makeOctal(num) {
+	return parseInt(number, 8);
+}
+// END JS Solver
+
+// Solve hyperbolic equation for how close it'll be to 1
+function solve(x,y,a,b) {
+	return a*x**2+b*y**2-1;
+}
+// END needed functions
+
+// Hash string function
+function hashString(string) {
+	let charArray = string.split('');
+	let numArray = [];
+	for (let x = 0 ; x<string.length ; x++) {
+		// console.log("x: " +x);
+		for (let y = 0 ; y<charDictionary.length ; y++) {
+			// console.log("y: "+y);
+			if (charDictionary[y][0] == charArray[x]) {
+				numArray.push(charDictionary[y][1]);
+			}
+		}
+	}
+	console.log(numArray);
+		// Define foci
+		// By the definition of the hyperbola, a hyperbola is a set of points in a plane. 
+		// For each point (x.y) on the hyperbola, 
+		// the difference between its distances from two fixed foci is a constant.
+		// From this, we get:
+		// xFoci1-xFoci2=2c --> c  = (xFoci1-xFoci2)/2
+		// a = transverseLength/2
+		// ((xFoci1-xFoci2)/2)^2-(transverseLength/2)^2=b^2
+		// b^2 = ((xFoci1-xFoci2)/2)^2-(transverseLength/2)^2
+		// a^2 = (transverseLength/2)^2
+		// Therefore: (transverseLength/2)^2(x)-((xFoci1-xFoci2)/2)^2-(transverseLength/2)^2(y)=1
+	if (numArray.length > 2) {
+		// First hyperbola
+		// Foci at: (xFoci1 , yFoci1) & (xFoci2 , yFoci2)
+		let xFoci1 = numArray.reduce((x, y) => x + y);
+		let xFoci2 = -(numArray.reduce((x, y) => x + y));
+		let yFoci1 = (numArray.reduce((x, y) => x + y)/(numArray.length));
+		let yFoci2 = yFoci1;
+		// Define transverse axis
+		let transverseLength = numArray.reduce((x, y) => x + y)/2;
+		// Second hyperbola
+		let yFoci3 = transverseLength+string.length;
+		let xFoci3 = xFoci1-100*string.length;
+		let xFoci4 = -(xFoci3);
+		let yFoci4 = transverseLength;
+		let aSquared = (transverseLength/2)**2;
+		let aSquared1 = (transverseLength/2)**2;
+		let bSquared1 = ((xFoci1-xFoci2)/2)^2-(transverseLength/2)**2;
+		let aSquared2 = (transverseLength/2)**2;
+		let bSquared2 = ((xFoci3-xFoci4)/2)^2-(transverseLength/2)**2;
+		console.log("Hyperbola 1: " + aSquared1 + "*x^2" + bSquared1/2 + "*y^2 = 1");
+		console.log("Hyperbola 2: " + (2)*(aSquared2+5) + "*x^2-" + 2*bSquared2 + "*y^2 = 1");
+	} else {
+		// First hyperbola
+		// Foci at: (xFoci1 , yFoci1) & (xFoci2 , yFoci2)
+		let xFoci1 = numArray.reduce((x, y) => x + y);
+		let xFoci2 = -(numArray.reduce((x, y) => x + y));
+		let yFoci1 = (numArray.reduce((x, y) => x + y)/(numArray.length));
+		let yFoci2 = yFoci1;
+		// Define transverse axis
+		let transverseLength = numArray.reduce((x, y) => x + y)/2;
+		console.log(transverseLength);
+		// Second hyperbola
+		// Foci at: (xFoci3 , yFoci3) & (xFoci4 , xFoci4)
+		let yFoci3 = transverseLength-xFoci1;
+		let xFoci3 = xFoci1-100*string.length;
+		let xFoci4 = -(xFoci3);			
+		let yFoci4 = transverseLength-xFoci2;
+		let aSquared1 = (transverseLength/2)**2;
+		let bSquared1 = ((xFoci1-xFoci2)/2)**2-(transverseLength/2)**2+(xFoci1+xFoci2);			
+		let aSquared2 = ((transverseLength/2)**2);
+		let bSquared2 = ((xFoci3-xFoci4)/2)**2-(transverseLength/2)**2;
+		console.log("Hyperbola 1: " + aSquared1 + "*x^2-" + bSquared1/2 + "*y^2 = 1");
+		console.log("Hyperbola 2: " + (1/2)*(aSquared2+3) + "*x^2" + 2*bSquared2 + "*y^2 = 1");
+	}
+	// Convert to standard form
+}
+
+hashString("hdfsu")
